@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cart Quantity</title>
+  </head>
+  <body>
+    <!-- Button to display the current cart quantity in the console -->
+    <button onclick="
+      console.log(`Cart quantity: ${cartQuantity}`);
+    ">Show Quantity</button>
+
+    <!-- Buttons to add different quantities of items to the cart -->
+    <button onclick="
+      updateCartQuantity(1);
+    ">Add to Cart</button>
+
+    <button onclick="
+      updateCartQuantity(2);
+    ">+2</button>
+
+    <button onclick="
+      updateCartQuantity(3);
+    ">+3</button>
+
+    <button onclick="
+      updateCartQuantity(4);
+    ">+4</button>
+
+    <button onclick="
+      updateCartQuantity(5);
+    ">+5</button>
+
+    <!-- Buttons to remove different quantities of items from the cart -->
+    <button onclick="
+      updateCartQuantity(-1);
+    ">Remove from cart</button>
+
+    <button onclick="
+      updateCartQuantity(-2);
+    ">-2</button>
+
+    <button onclick="
+      updateCartQuantity(-3);
+    ">-3</button>
+
+    <!-- Button to reset the cart quantity to zero -->
+    <button onclick="
+      cartQuantity = 0;
+      console.log('Cart was reset.');
+      console.log(`Cart quantity: ${cartQuantity}`);
+    ">Reset Cart</button>
+
+    <script>
+      // Variable to store the current cart quantity
+      let cartQuantity = 0;
+
+      // Function to update the cart quantity based on the button clicked
+      function updateCartQuantity(change) {
+        if (cartQuantity + change > 10) {
+          alert('The cart is full'); // Prevent adding more than 10 items
+        } else if (cartQuantity + change < 0) {
+          alert('Not enough items in the cart'); // Prevent negative cart quantity
+        } else {
+          cartQuantity += change; // Update the cart quantity
+          console.log(`Cart quantity: ${cartQuantity}`); // Log the updated quantity
+        }
+      }
+    </script>
+  </body>
+</html>
