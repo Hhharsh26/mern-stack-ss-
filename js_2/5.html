@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Condition Evaluation</title>
+</head>
+<body>
+  <h1>Check Console for the Output</h1>
+
+  <script>
+    function checkEligibility(data) {
+      if (data.age >= 18 && data.hasDrivingLicense) {
+        return "Eligible to drive";
+      }
+      if (data.temp > 30 || data.moisture > 70) {
+        return "Warning: High discomfort levels";
+      }
+      if ((data.position === "admin" || data.position === "editor") && data.activeStatus) {
+        return "Access granted";
+      }
+      return "No specific status";
+    }
+
+    let individual = {
+      age: 20,
+      hasDrivingLicense: true,
+      temp: 35,
+      moisture: 50,
+      position: "admin",
+      activeStatus: true
+    };
+
+    console.log(checkEligibility(individual)); 
+  </script>
+</body>
+</html>

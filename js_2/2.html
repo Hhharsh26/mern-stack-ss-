@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longest Palindrome Finder</title>
+</head>
+<body>
+    <script>
+        function findLongestMirrorString(inputStr) {
+            let maxPalindrome = '';
+            for (let start = 0; start < inputStr.length; start++) {
+                for (let end = start; end < inputStr.length; end++) {
+                    let substring = inputStr.slice(start, end + 1);
+                    if (substring === substring.split('').reverse().join('') && substring.length > maxPalindrome.length) {
+                        maxPalindrome = substring;
+                    }
+                }
+            }
+            return maxPalindrome;
+        }
+
+        console.log(findLongestMirrorString("banana"));  // "anana"
+        console.log(findLongestMirrorString("madam"));   // "madam"
+    </script>
+</body>
+</html>

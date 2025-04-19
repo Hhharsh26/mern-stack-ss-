@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency format</title>
+</head>
+<body>
+    <script>
+        function formatCurrency(amount, currencyCode)
+{
+  return new Intl.NumberFormat('en-US',{
+    style:'currency',
+    currency: currencyCode
+  }).format(amount);
+}
+console.log(formatCurrency(1,'INR'));
+console.log(formatCurrency(7654321.69, 'INR'));
+console.log(formatCurrency(1, 'USD')); 
+console.log(formatCurrency(7654321.69, 'USD'));
+console.log(formatCurrency(1, 'EUR')); 
+console.log(formatCurrency(7654321.69, 'EUR'));
+
+    </script>
+</body>
+</html>

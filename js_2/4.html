@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scope</title>
+</head>
+<body>
+  <h2>Open the console to see the scope output</h2>
+
+  <script>
+    var sharedData = "Accessible globally";
+
+    function checkScope() {
+      var localMessage = "Visible only within the function";
+      if (true) {
+        let tempNote = "This exists only in the block";
+        console.log(tempNote);
+      }
+      console.log(sharedData);
+      console.log(localMessage);
+    }
+
+    checkScope();
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List Highlighter</title>
+  <style>
+    .emphasized {
+      background-color: rgb(255, 217, 0);
+    }
+  </style>
+</head>
+<body>
+  <ul id="customList">
+    <li>Entry 1</li>
+    <li>Entry 2</li>
+    <li>Entry 3</li>
+    <li>Entry 4</li>
+    <li>Entry 5</li>
+  </ul>
+
+  <script>
+    const entries = document.querySelectorAll('#customList li');
+    console.log("Fetched Items:", entries);
+
+    entries.forEach(el => {
+      console.log(el.innerText);
+    });
+
+    entries.forEach((el, idx) => {
+      if (idx % 2 === 1) {
+        el.classList.add('emphasized');
+      }
+    });
+
+    console.log("Total entries found:", entries.length);
+  </script>
+</body>
+</html>

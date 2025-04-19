@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calc</title>
+</head>
+<body>
+  <h1>Basic Calculator</h1>
+  <div>
+    <label for="input1">Number 1:</label>
+    <input type="number" id="input1" />
+  </div>
+  <div>
+    <label for="input2">Number 2:</label>
+    <input type="number" id="input2" />
+  </div>
+  <div>
+    <button onclick="executeCalculation('sum')">Add</button>
+    <button onclick="executeCalculation('difference')">Subtract</button>
+    <button onclick="executeCalculation('product')">Multiply</button>
+    <button onclick="executeCalculation('quotient')">Divide</button>
+  </div>
+  <h2>Result: <span id="output"></span></h2>
+
+  <script>
+    function createMathOperations() {
+      return {
+        sum: function(a, b) {
+          return a + b;
+        },
+        difference: function(a, b) {
+          return a - b;
+        },
+        product: function(a, b) {
+          return a * b;
+        },
+        quotient: function(a, b) {
+          if (b === 0) {
+            return "Cannot divide by zero";
+          }
+          return a / b;
+        }
+      };
+    }
+
+    const mathOps = createMathOperations();
+
+    function executeCalculation(operation) {
+      const input1 = parseFloat(document.getElementById('input1').value);
+      const input2 = parseFloat(document.getElementById('input2').value);
+
+      let output;
+      if (operation === 'sum') {
+        output = mathOps.sum(input1, input2);
+      } else if (operation === 'difference') {
+        output = mathOps.difference(input1, input2);
+      } else if (operation === 'product') {
+        output = mathOps.product(input1, input2);
+      } else if (operation === 'quotient') {
+        output = mathOps.quotient(input1, input2);
+      }
+
+      document.getElementById('output').textContent = output;
+    }
+  </script>
+</body>
+</html>
