@@ -1,0 +1,72 @@
+/* General Page Styling */
+body {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Main Title */
+.title {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+/* Move Button Icons */
+.move-icon {
+  height: 35px;
+}
+
+/* Buttons for Rock, Paper, Scissors */
+.move-button {
+  background: transparent;
+  border: 3px solid #fff;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.move-button:hover {
+  transform: scale(1.05);
+}
+
+/* Result Text */
+.result {
+  font-size: 26px;
+  font-weight: 600;
+  margin-top: 40px;
+}
+
+/* Score Display */
+.score {
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+/* Reset and Other Action Buttons */
+.reset-score-button,
+.auto-play-button {
+  background-color: #ffffff;
+  border: none;
+  color: #000000;
+  font-size: 15px;
+  padding: 10px 20px;
+  margin-top: 30px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.reset-score-button:hover,
+.auto-play-button:hover {
+  background-color: #dddddd;
+}
