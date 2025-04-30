@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Counter Buttons</title>
+</head>
+<body>
+    <button onclick="showA()">A</button>
+    <button onclick="showB()">B</button>
+
+    <script>
+        function makeCounter() {
+            let num = 0;
+            return function() {
+                num = num + 1;
+                return num;
+            };
+        }
+
+        let a = makeCounter();
+        let b = makeCounter();
+
+        function showA() {
+            alert(a());
+        }
+
+        function showB() {
+            alert(b());
+        }
+    </script>
+</body>
+</html>
