@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scope Check</title>
+</head>
+<body>
+    <script>
+        let x = 10;
+        console.log("Start value:", x);
+
+        function mystery() {
+            try {
+                console.log("In try block:", x);
+            } catch (e) {
+                console.log("Error:", e);
+            }
+
+            let x = 25;
+            console.log("In function after declaration:", x);
+        }
+
+        mystery();
+        console.log("Final value:", x);
+    </script>
+</body>
+</html>
