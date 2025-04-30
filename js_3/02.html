@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Greeting</title>
+</head>
+<body>
+    <script>
+        function greetLater(list) {
+            for (let j = 0; j < list.length; j++) {
+                setTimeout(function() {
+                    console.log("Hello " + list[j] + "!");
+                }, j * 1000);
+            }
+        }
+
+        greetLater(["Alice", "Bob", "Charlie"]);
+    </script>
+</body>
+</html>
