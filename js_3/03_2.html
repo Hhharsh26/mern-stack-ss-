@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delayed Hello</title>
+</head>
+<body>
+    <script>
+        let personA = {
+            name: "Alice",
+            sayHiLater: function() {
+                setTimeout(function() {
+                    console.log("Hi " + this.name);
+                }, 1000);
+            }
+        };
+        personA.sayHiLater();
+
+        let personB = {
+            name: "Alice",
+            sayHiLater: function() {
+                let that = this;
+                setTimeout(function() {
+                    console.log("Hi " + that.name);
+                }, 1000);
+            }
+        };
+        personB.sayHiLater();
+
+        let personC = {
+            name: "Alice",
+            sayHiLater: function() {
+                setTimeout(() => {
+                    console.log("Hi " + this.name);
+                }, 1000);
+            }
+        };
+        personC.sayHiLater();
+    </script>
+</body>
+</html>
