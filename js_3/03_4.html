@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rest Parameters</title>
+</head>
+<body>
+    <script>
+        function showNumbers(x, y, ...others) {
+            console.log(x);
+            console.log(y);
+            console.log(others);
+        }
+
+        showNumbers(1);
+        showNumbers(1, 2);
+        showNumbers(1, 2, 3, 4, 5);
+    </script>
+</body>
+</html>
