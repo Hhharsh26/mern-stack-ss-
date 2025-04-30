@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Counter Functions</title>
+</head>
+<body>
+    <script>
+        function makeCounter(start) {
+            let value = start;
+
+            function add() {
+                value += 1;
+                return value;
+            }
+
+            function subtract() {
+                value -= 1;
+                return value;
+            }
+
+            return { add, subtract };
+        }
+
+        let one = makeCounter(10);
+        console.log(one.add());
+        console.log(one.subtract());
+
+        let two = makeCounter(5);
+        console.log(two.add());
+        console.log(two.subtract());
+    </script>
+</body>
+</html>
