@@ -1,0 +1,15 @@
+Question 1:
+I made a makeCounter function that returns two smaller functions — one to increase and one to decrease a number. Every time I call makeCounter, it starts with a new value and remembers it. This demonstrates the concept of closure, where the inner functions still have access to the count variable, even after the outer function has finished running.
+
+Question 2:
+I used a for loop along with setTimeout to print Hi {name} every second. The delay increases by 1000ms each time. This works because of closures inside loops, meaning each setTimeout callback remembers the value of the loop variable when it was created.
+
+Question 3:
+
+Part 1: This shows what happens when you use let inside a function. If you try to access a let variable before it’s declared, it throws an error. That's because let doesn’t behave like var and isn’t hoisted in the same way.
+
+Part 2: Here, I explain how the this keyword works differently in regular functions and arrow functions. In normal functions, this depends on how the function is called, so it might not refer to the object as expected. But arrow functions capture the this value from where they’re created, making them work better in cases like setTimeout.
+
+Part 3: This again demonstrates closure, where an inner function still has access to variables from the outer function. It’s useful when you want to create small modules like counters that remember their own private data.
+
+Part 4: This part uses the rest parameter in a function, which allows it to accept a variable number of arguments. It’s really helpful when you don’t know exactly how many values will be passed into the function.
