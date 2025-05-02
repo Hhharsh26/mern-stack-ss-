@@ -1,1 +1,447 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form with Tests</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
+    .login-container {
+      background-color: #fff;
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px #aaa;
+      width: 300px;
+      margin-top: 100px;
+    }
+
+    .login-container h2 {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input.error {
+      border-color: red;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #message {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    #loading {
+      text-align: center;
+      margin-bottom: 10px;
+      color: gray;
+    }
+
+    /* Test results */
+    #test-results {
+      margin-top: 20px;
+      width: 80%;
+      background: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 5px #aaa;
+      max-width: 500px;
+    }
+
+    .test-pass {
+      color: green;
+    }
+
+    .test-fail {
+      color: red;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <h2>Login</h2>
+  <p id="loading">Loading users...</p>
+  <form id="loginForm" style="display: none;">
+    <input type="text" id="username" placeholder="Username"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+    <button type="submit">Login</button>
+  </form>
+  <p id="message"></p>
+</div>
+
+<div id="test-results"></div>
+
+<script>
+let users = [];
+
+// Simple testing helpers
+function describe(desc, fn) {
+  const resultsDiv = document.getElementById('test-results');
+  const header = document.createElement('h3');
+  header.textContent = desc;
+  resultsDiv.appendChild(header);
+  fn();
+}
+
+function it(msg, fn) {
+  const resultsDiv = document.getElementById('test-results');
+  const p = document.createElement('p');
+  try {
+    fn();
+    p.textContent = '✔ ' + msg;
+    p.className = 'test-pass';
+  } catch (error) {
+    p.textContent = '❌ ' + msg + ' — ' + error.message;
+    p.className = 'test-fail';
+  }
+  resultsDiv.appendChild(p);
+}
+
+function assert(condition, message) {
+  if (!condition) {
+    throw new Error(message || "Assertion failed");
+  }
+}
+
+// Load users.json
+fetch('users.json')
+  .then(response => response.json())
+  .then(data => {
+    users = data;
+
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'block';
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      const inputUsername = usernameInput.value.trim();
+      const inputPassword = passwordInput.value.trim();
+      const message = document.getElementById('message');
+
+      // Clear previous
+      message.textContent = '';
+      usernameInput.classList.remove('error');
+      passwordInput.classList.remove('error');
+
+      // Validation
+      if (inputUsername === '' || inputPassword === '') {
+        message.style.color = 'red';
+        message.textContent = 'Please fill all fields.';
+        if (inputUsername === '') usernameInput.classList.add('error');
+        if (inputPassword === '') passwordInput.classList.add('error');
+        return;
+      }
+
+      // Check user
+      const validUser = users.find(user =>
+        user.username === inputUsername && user.password === inputPassword
+      );
+
+      if (validUser) {
+        message.style.color = 'green';
+        message.textContent = 'Login successful!';
+      } else {
+        message.style.color = 'red';
+        message.textContent = 'Invalid username or password.';
+      }
+    });
+
+    // Run tests AFTER users loaded
+    runTests();
+  })
+  .catch(error => {
+    console.error('Error loading users:', error);
+    document.getElementById('loading').textContent = 'Error loading users file!';
+  });
+
+// --- Tests ---
+function runTests() {
+  describe('Login Validation Tests', function() {
+
+    it('Users should be loaded from JSON', function() {
+      assert(Array.isArray(users), 'Users not an array');
+      assert(users.length > 0, 'Users list is empty');
+    });
+
+    it('Sameer should exist with correct password', function() {
+      const user = users.find(u => u.username === 'harsh');
+      assert(user, 'User sameer not found');
+      assert(user.password === '1111', 'Incorrect password for sameer');
+    });
+
+    it('Admin should exist with correct password', function() {
+      const user = users.find(u => u.username === 'Admin');
+      assert(user, 'User admin not found');
+      assert(user.password === '123Admin', 'Incorrect password for admin');
+    });
+
+    it('Guest should exist with correct password', function() {
+      const user = users.find(u => u.username === 'user');
+      assert(user, 'User guest not found');
+      assert(user.password === 'user', 'Incorrect password for guest');
+    });
+
+  });
+}
+
+</script>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form with Tests</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .login-container {
+      background-color: #fff;
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px #aaa;
+      width: 300px;
+      margin-top: 100px;
+    }
+
+    .login-container h2 {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input.error {
+      border-color: red;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #message {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    #loading {
+      text-align: center;
+      margin-bottom: 10px;
+      color: gray;
+    }
+
+    /* Test results */
+    #test-results {
+      margin-top: 20px;
+      width: 80%;
+      background: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 5px #aaa;
+      max-width: 500px;
+    }
+
+    .test-pass {
+      color: green;
+    }
+
+    .test-fail {
+      color: red;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <h2>Login</h2>
+  <p id="loading">Loading users...</p>
+  <form id="loginForm" style="display: none;">
+    <input type="text" id="username" placeholder="Username"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+    <button type="submit">Login</button>
+  </form>
+  <p id="message"></p>
+</div>
+
+<div id="test-results"></div>
+
+<script>
+let users = [];
+
+// Simple testing helpers
+function describe(desc, fn) {
+  const resultsDiv = document.getElementById('test-results');
+  const header = document.createElement('h3');
+  header.textContent = desc;
+  resultsDiv.appendChild(header);
+  fn();
+}
+
+function it(msg, fn) {
+  const resultsDiv = document.getElementById('test-results');
+  const p = document.createElement('p');
+  try {
+    fn();
+    p.textContent = '✔ ' + msg;
+    p.className = 'test-pass';
+  } catch (error) {
+    p.textContent = '❌ ' + msg + ' — ' + error.message;
+    p.className = 'test-fail';
+  }
+  resultsDiv.appendChild(p);
+}
+
+function assert(condition, message) {
+  if (!condition) {
+    throw new Error(message || "Assertion failed");
+  }
+}
+
+// Load users.json
+fetch('users.json')
+  .then(response => response.json())
+  .then(data => {
+    users = data;
+
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'block';
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      const inputUsername = usernameInput.value.trim();
+      const inputPassword = passwordInput.value.trim();
+      const message = document.getElementById('message');
+
+      // Clear previous
+      message.textContent = '';
+      usernameInput.classList.remove('error');
+      passwordInput.classList.remove('error');
+
+      // Validation
+      if (inputUsername === '' || inputPassword === '') {
+        message.style.color = 'red';
+        message.textContent = 'Please fill all fields.';
+        if (inputUsername === '') usernameInput.classList.add('error');
+        if (inputPassword === '') passwordInput.classList.add('error');
+        return;
+      }
+
+      // Check user
+      const validUser = users.find(user =>
+        user.username === inputUsername && user.password === inputPassword
+      );
+
+      if (validUser) {
+        message.style.color = 'green';
+        message.textContent = 'Login successful!';
+      } else {
+        message.style.color = 'red';
+        message.textContent = 'Invalid username or password.';
+      }
+    });
+
+    // Run tests AFTER users loaded
+    runTests();
+  })
+  .catch(error => {
+    console.error('Error loading users:', error);
+    document.getElementById('loading').textContent = 'Error loading users file!';
+  });
+
+// --- Tests ---
+function runTests() {
+  describe('Login Validation Tests', function() {
+
+    it('Users should be loaded from JSON', function() {
+      assert(Array.isArray(users), 'Users not an array');
+      assert(users.length > 0, 'Users list is empty');
+    });
+
+    it('harsh should exist with correct password', function() {
+      const user = users.find(u => u.username === 'harsh');
+      assert(user, 'User sameer not found');
+      assert(user.password === '1111', 'Incorrect password for sameer');
+    });
+
+
+    it('Admin should exist with correct password', function() {
+      const user = users.find(u => u.username === 'admin');
+      assert(user, 'User admin not found');
+      assert(user.password === 'admin123', 'Incorrect password for admin');
+    });
+
+    it('Guest should exist with correct password', function() {
+      const user = users.find(u => u.username === 'guest');
+      assert(user, 'User guest not found');
+      assert(user.password === 'guestpass', 'Incorrect password for guest');
+    });
+
+  });
+}
+
+</script>
+
+</body>
+</html>
